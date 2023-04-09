@@ -12,4 +12,4 @@ If you want to wimp out and try a different word, click on the **I give up** but
 
 If you want to play, feel free to just download or clone this repository and play.
 
-Also there is a little bit of data anlysis of the word (I may do more later), and the allwords.ipynb notebook is where I scraped the word list from a website. 
+Also there is a little bit of data analysis of the word (I may do more later), and the allwords.ipynb notebook is where I scraped the word list from a website. 
