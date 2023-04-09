@@ -11,6 +11,7 @@ class WordleGUI:
         self.secret_word = ''
         self.secret_letters = defaultdict(int)
         self.words = None
+        self.reset_flag = False
         
         # Create the text boxes
         self.text_boxes = []
@@ -35,7 +36,7 @@ class WordleGUI:
                     elif j == 4:
                         if i < 5:
                             self.text_boxes[i+1][0].focus()
-                        else:
+                        elif not self.reset:
                             self.done()
                 self.text_boxes[i][j].bind("<KeyRelease>", handle_keypress)
         self.giveup_button = tk.Button(self.master, text="I give up", command=self.give_up)
@@ -100,11 +101,14 @@ class WordleGUI:
             for j in range(5):
                 self.text_boxes[i][j].delete(0, tk.END)
                 self.text_boxes[i][j].configure(bg='white')
+
+        self.reset_flag = True
         self.text_boxes[0][0].focus()
+        self.reset_flag = False
 
     def done(self):
         ans = messagebox.askyesno(title='Wordle Loser', 
-                                  message=f'Out of tries. The secret word was "{self.secret_word}". Try agian?')
+                                message=f'Out of tries. The secret word was "{self.secret_word}". Try agian?')
         if ans:
             self.reset()
         else:
@@ -123,7 +127,7 @@ def main():
     vocab = list(map(lambda x: x.strip(), vocab))
     game.words = vocab
     game.set_secret_word(random.choice(vocab))
-    # print(game.secret_word)
+    print(game.secret_word)
     game.run()
 
 
